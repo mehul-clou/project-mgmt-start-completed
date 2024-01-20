@@ -18,8 +18,10 @@ export default function NewProject({ onAdd }) {
       enteredDescription.trim() === "" ||
       enteredDueDate.trim() === ""
     ) {
-      //
+      modal.current.open();
+      return;
     }
+
     onAdd({
       title: enteredTitle,
       descrption: enteredDescription,
@@ -28,8 +30,17 @@ export default function NewProject({ onAdd }) {
   }
   return (
     <>
-      <Modal ref={modal} />
-      <div className="wd[35rem] mt-16">
+      <Modal ref={modal}>
+        <h2 className="text-xl font-bold text-stone-900 my-4">Invalid Input</h2>
+        <p className="text-stone-800 mb-4">
+          Oops...looks like you forget to enter a value
+        </p>
+        <p className="text-stone-800 mb-4">
+          Please make sure you provide a valid value to every input field{" "}
+        </p>
+      </Modal>
+
+      <div className="w-[35rem] mt-16 ">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
             <button className="text-stone-800 hover:text-stone-950">
@@ -45,6 +56,7 @@ export default function NewProject({ onAdd }) {
             </button>
           </li>
         </menu>
+
         <div>
           <Input type="text" ref={title} label="Title" />
           <Input ref={descrption} label="Discription" textarea />
