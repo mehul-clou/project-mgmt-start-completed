@@ -62,7 +62,6 @@ function App() {
       };
     });
   }
-
   console.log(projectState);
 
   const selectedProject = projectState.projects.find(
